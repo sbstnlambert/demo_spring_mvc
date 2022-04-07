@@ -4,10 +4,7 @@ import be.technifutur.demo_mvc.models.Product;
 import be.technifutur.demo_mvc.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -42,6 +39,14 @@ public class ProductController {
         List<Product> list = service.getAll();
         model.addAttribute("product_list", list);
         return "displayAll";
+    }
+
+    @GetMapping("/brand")
+    public String displayBrand(@RequestParam String brand, Model model) {
+        List<Product> brandList = service.getAllByBrand(brand);
+        model.addAttribute("brand_list", brandList);
+        model.addAttribute("brand", brand);
+        return "displayByBrand";
     }
 
     @ExceptionHandler(NoSuchElementException.class)

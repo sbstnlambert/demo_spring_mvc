@@ -53,6 +53,34 @@ public class ProductService {
                         .onSale(true)
                         .build()
         );
+
+        products.add(
+                Product.builder()
+                        .id(5)
+                        .brand("brand2")
+                        .model("model3")
+                        .price(40)
+                        .onSale(true)
+                        .build()
+        );products.add(
+                Product.builder()
+                        .id(6)
+                        .brand("brand2")
+                        .model("model4")
+                        .price(40)
+                        .onSale(true)
+                        .build()
+        );
+
+        products.add(
+                Product.builder()
+                        .id(7)
+                        .brand("brand4")
+                        .model("model5")
+                        .price(40)
+                        .onSale(true)
+                        .build()
+        );
     }
 
     public Product getOne(int id) {
@@ -64,6 +92,12 @@ public class ProductService {
 
     public List<Product> getAll() {
         return new ArrayList<>(products); // Renvoie une copie de ma liste pour protéger l'originale
+    }
+
+    public List<Product> getAllByBrand(String brand) {
+        return new ArrayList<>(products).stream()
+                .filter(product -> product.getBrand().equalsIgnoreCase(brand))
+                .toList();
     }
 
 }
