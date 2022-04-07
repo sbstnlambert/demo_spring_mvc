@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Display One</title>
+</head>
+<body>
+
+<!--    th:text définit le texte à l'intérieur de la balise en donnant accès à des infos du modèle
+            ou d'autres génériques (session, etc.).
+        Ici je veux afficher l'id
+        ${ } = déclaration de variable
+         -->
+<h1 th:text="| Product ID: ${ product.id } |"></h1>
+
+</body>
+</html>
