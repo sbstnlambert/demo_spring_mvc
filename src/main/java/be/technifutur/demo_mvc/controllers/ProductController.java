@@ -7,11 +7,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 // NB : Ce n'est pas un Controller d'API (un @RestController)
 @Controller
+@RequestMapping("/product")
 public class ProductController {
     // Avec MVC, on a du GET et du POST
     // C'est avec REST qu'on a accès aux autres (PUT, PATCH, etc.)
@@ -22,7 +25,7 @@ public class ProductController {
         this.service = service;
     }
 
-    @GetMapping("product/{id}")
+    @GetMapping("/{id}")
     // Je renvoie le nom du fichier qui se trouve dans mon dossier templates (package resources.templates)
     // Très souvent, renvoie un String
     // Model (from org.springframework.ui) sert à lier mon Controller à la Vue
@@ -32,6 +35,13 @@ public class ProductController {
 
         // Renvoie le fichier displayOne.html dans resources.templates
         return "displayOne";
+    }
+
+    @GetMapping
+    public String displayAll(Model model) {
+        List<Product> list = service.getAll();
+        model.addAttribute("product_list", list);
+        return "displayAll";
     }
 
     @ExceptionHandler(NoSuchElementException.class)

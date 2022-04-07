@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Display One</title>
+    <title>Product</title>
 </head>
 <body>
 
@@ -11,7 +11,17 @@
         Ici je veux afficher l'id
         ${ } = déclaration de variable
          -->
-<h1 th:text="| Product ID: ${ product.id } |"></h1>
+
+
+<th:block th:object="${ product }">
+    <h1 th:text="| Product ID: *{ id } |"></h1>
+
+    <p th:text="| Brand: *{ brand } |"></p>
+    <p th:text="| Model: *{ model } |"></p>
+    <p th:text="| Price: *{ price } EUR |"></p>
+    <p th:text="| *{ onSale ? 'Available' : 'Not available' } |"></p>
+    <p><a href="/product">Back to list</a></p>
+</th:block>
 
 </body>
 </html>
