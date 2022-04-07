@@ -22,7 +22,7 @@
             <p th:text="| Model: *{ model } |"></p>
             <p th:text="| Price: *{ price } |"></p>
     <!--        @{...} permet de passer des paramètres / donner + d'infos dans le lien -->
-            <p><a th:href="@{ /product/{id}(id=*{ id }, param1='param1') } |">Details</a></p>
+            <p><a th:href="| @{ /product/{id}(id=*{ id }, param1='param1') } |">Details</a></p>
     <!--        <p><a th:href="@{/product/${ product.id }}() |">Details</a></p>-->
         </li>
     </ul>
