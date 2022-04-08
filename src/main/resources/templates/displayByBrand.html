@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Brand Product</title>
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Brand Product</title>
+    </head>
+    <body>
 
-    <div th:replace="~{ fragments :: header }"></div>
+        <div th:replace="~{ fragments :: header }"></div>
 
-      <h2 th:text="| Brand List (${ brand_list.size }) |"></h2>
-      <p><a href="/product">Back to main list</a></p>
+    <!--        Ici, <strong> permet de tester mon html sans relancer le serveur -->
+          <h2 th:utext="| Brand List: <strong>${brand}</strong> (${ brand_list.size }) |">
+              Brand: <strong>My brand</strong>
+          </h2>
 
-      <ul>
-          <li th:each="product : ${ brand_list }" th:object="${ product }">
-              <p th:text="| Brand: *{ brand } |"></p>
-              <p th:text="| Model: *{ model } |"></p>
-              <p th:text="| Price: *{ price } |"></p>
-          </li>
-      </ul>
+          <p><a href="/product">Back to main list</a></p>
 
-    <div th:replace="~{ fragments :: footer }"></div>
+          <ul>
+              <li th:each="product : ${ brand_list }" th:object="${ product }">
+                  <p th:text="| Brand: *{ brand } |">Brand: My brand</p>
+                  <p th:text="| Model: *{ model } |">Model: My model</p>
+                  <p th:text="| Price: *{ price } EUR |">Price: 1000.0 EUR</p>
+              </li>
+          </ul>
 
-</body>
+        <div th:replace="~{ fragments :: footer }"></div>
+
+    </body>
 </html>
