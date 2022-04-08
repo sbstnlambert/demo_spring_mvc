@@ -5,8 +5,10 @@ import be.technifutur.demo_mvc.models.ProductForm;
 import be.technifutur.demo_mvc.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -66,7 +68,9 @@ public class ProductController {
     }
 
     @PostMapping("/add")
-    public String processInsert(@ModelAttribute("product") ProductForm form) {
+    public String processInsert(@Valid @ModelAttribute("product") ProductForm form, BindingResult binding) {
+        if (binding.hasErrors())
+            return "forms/productForm";
         Product result = service.insert(form);
         return "redirect:/product/" + result.getId();
     }

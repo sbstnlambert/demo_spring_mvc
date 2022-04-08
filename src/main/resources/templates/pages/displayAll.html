@@ -20,6 +20,10 @@
         <div th:replace="~{ fragments/fragments :: #shopping_card }"></div>
         <h2 th:text="| Product List (${ list.size }) |"></h2>
 
+        <a href="@{/product/add}">
+            <button class="btn btn-success">Add</button>
+        </a>
+
         <!-- th:each boucle sur les éléments d'une liste -->
         <!-- FOCUS = th:object => Utiliser ceci et l'astérisque *{...} pour ne plus avoir à faire product.brand, product.model, etc. -->
         <ul>

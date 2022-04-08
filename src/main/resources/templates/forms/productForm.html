@@ -1,20 +1,29 @@
 <!DOCTYPE html>
-<html lang="en" th:replace="~{ /layout/layout :: layout(~{ ::content }, _) }">
+<html lang="en" th:replace="~{ /layout/layout :: layout(~{ ::content }, _) }"
+      xmlns:th="http://www.thymeleaf.org">
 
     <th:block th:fragment="content">
+
+        <a th:href="@{ /product }">
+            <button class="btn btn-danger">Back to list</button>
+        </a>
 
         <form action="#" th:action="@{ /product/add }" method="post" th:object="${ product }">
             <div class="mb-3">
                 <label for="input-brand" class="form-label">Brand: </label>
                 <input type="text" id="input-brand" class="form-control" th:field="*{ brand }">
+                <p th:if="${ #fields.hasErrors('brand') }" th:errors="${ brand }">There are some mistakes.</p>
+                <p th:unless="${ #fields.hasErrors('brand') }">There are no mistakes.</p>
             </div>
             <div class="mb-3">
                 <label for="input-model" class="form-label">Model: </label>
                 <input type="text" id="input-model" class="form-control" th:field="*{ model }">
+                <p th:if="${ #fields.hasErrors('model') }" th:errors="${ model }">There are some mistakes.</p>
             </div>
             <div class="mb-3">
                 <label for="input-price" class="form-label">Price: </label>
                 <input type="number" id="input-price" class="form-control" th:field="*{ price }">
+                <p th:if="${ #fields.hasErrors('price') }" th:errors="${ price }">There are some mistakes.</p>
             </div>
             <button type="submit" class="btn btn-info">Submit</button>
         </form>

@@ -14,7 +14,9 @@
                     Brand: <strong>My brand</strong>
                 </h2>
 
-                <p><a href="/product">Back to main list</a></p>
+                <a th:href="@{ /product }">
+                    <button class="btn btn-danger">Back to list</button>
+                </a>
 
                 <ul>
                     <li th:each="product : ${ brand_list }" th:object="${ product }">
