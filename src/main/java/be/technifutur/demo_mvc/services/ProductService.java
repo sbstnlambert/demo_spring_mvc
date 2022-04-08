@@ -59,7 +59,7 @@ public class ProductService {
                         .id(5)
                         .brand("brand2")
                         .model("model3")
-                        .price(40)
+                        .price(230)
                         .onSale(true)
                         .build()
         );products.add(
@@ -67,7 +67,7 @@ public class ProductService {
                         .id(6)
                         .brand("brand2")
                         .model("model4")
-                        .price(40)
+                        .price(240)
                         .onSale(true)
                         .build()
         );
@@ -77,7 +77,7 @@ public class ProductService {
                         .id(7)
                         .brand("brand4")
                         .model("model5")
-                        .price(40)
+                        .price(450)
                         .onSale(true)
                         .build()
         );
