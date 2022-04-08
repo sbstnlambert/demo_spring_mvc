@@ -41,10 +41,9 @@ public class ProductController {
         return "displayAll";
     }
 
-    @GetMapping("/brand")
+    @GetMapping("/by_brand")
     public String displayBrand(@RequestParam String brand, Model model) {
-        List<Product> brandList = service.getAllByBrand(brand);
-        model.addAttribute("brand_list", brandList);
+        model.addAttribute("brand_list", service.getAllByBrand(brand));
         model.addAttribute("brand", brand);
         return "displayByBrand";
     }
