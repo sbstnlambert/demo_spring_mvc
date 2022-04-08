@@ -1,28 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html th:replace="~{ /layout/layout :: layout(~{ ::content }, ~{ ::css }) }">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Product</title>
+    <th:block th:fragment="css">
+    <link rel="stylesheet" href="../../static/css/specific.css" th:href="@{ /css/specific.css }">
+    </th:block>
 </head>
-<body>
 
 <!--    th:text définit le texte à l'intérieur de la balise en donnant accès à des infos du modèle
             ou d'autres génériques (session, etc.).
         Ici je veux afficher l'id
         ${ } = déclaration de variable
          -->
+    <body>
 
+        <th:block th:object="${ product }" th:fragment="content">
+            <h1 th:text="| Product ID: *{ id } |"></h1>
+            <p>Brand:
+                <a th:href="@{ /product/by_brand(brand = *{ brand }) }" th:text="*{ brand }"></a>
+            </p>
+            <p th:text="| Model: *{ model } |"></p>
+            <p th:text="| Price: *{ price } EUR |"></p>
+            <p th:text="| *{ onSale ? 'Available' : 'Not available' } |"></p>
+            <p><a href="/product">Back to list</a></p>
+        </th:block>
 
-<th:block th:object="${ product }">
-    <h1 th:text="| Product ID: *{ id } |"></h1>
-    <p>Brand:
-        <a th:href="@{ /product/by_brand(brand = *{ brand }) }" th:text="*{ brand }"></a>
-    </p>
-    <p th:text="| Model: *{ model } |"></p>
-    <p th:text="| Price: *{ price } EUR |"></p>
-    <p th:text="| *{ onSale ? 'Available' : 'Not available' } |"></p>
-    <p><a href="/product">Back to list</a></p>
-</th:block>
-
-</body>
+    </body>
 </html>

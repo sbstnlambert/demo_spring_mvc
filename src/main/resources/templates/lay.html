@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <th:block th:fragment="text_frag(title, content)">
+
+        <h1 th:text="${ title }">Bitter Sweet Symphony</h1>
+        <p>
+            Hello to you my bitter friend.
+        </p>
+
+        <div th:insert="${ content }">
+
+        </div>
+
+    </th:block>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+
+        <th:block th:replace="~{ lay :: text_frag('My custom title', ~{ ::form }) }">
+            <form action="" method="post" th:fragment="form">
+                <label>Name</label>
+                <input type="text"><br>
+
+                <label>Surname</label>
+                <input type="text"><br>
+
+                <button type="submit">Submit</button>
+
+            </form>
+        </th:block>
+
+    </body>
+</html>
