@@ -15,9 +15,8 @@
 
 <th:block th:object="${ product }">
     <h1 th:text="| Product ID: *{ id } |"></h1>
-    <p>
-        <span>Brand: </span>
-        <a th:href="@{ /product/brand(brand = *{ brand }) }" th:text="*{ brand }"></a>
+    <p>Brand:
+        <a th:href="@{ /product/by_brand(brand = *{ brand }) }" th:text="*{ brand }"></a>
     </p>
     <p th:text="| Model: *{ model } |"></p>
     <p th:text="| Price: *{ price } EUR |"></p>
