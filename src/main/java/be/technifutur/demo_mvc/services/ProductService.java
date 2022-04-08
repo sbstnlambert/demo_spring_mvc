@@ -1,6 +1,7 @@
 package be.technifutur.demo_mvc.services;
 
 import be.technifutur.demo_mvc.models.Product;
+import be.technifutur.demo_mvc.models.ProductForm;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
 public class ProductService {
 
     private List<Product> products;
+    private int nextId = 8;
 
     public ProductService() {
         products = new ArrayList<>();
@@ -98,6 +100,18 @@ public class ProductService {
         return new ArrayList<>(products).stream()
                 .filter(product -> product.getBrand().equalsIgnoreCase(brand))
                 .toList();
+    }
+
+    public Product insert(ProductForm form) {
+        Product p = Product.builder()
+                .id(nextId++)
+                .brand(form.getBrand())
+                .model(form.getModel())
+                .price(form.getPrice())
+                .onSale(true)
+                .build();
+        products.add(p);
+        return p;
     }
 
 }

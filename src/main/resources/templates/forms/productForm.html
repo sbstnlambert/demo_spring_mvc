@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{ /layout/layout :: layout(~{ ::content }, _) }">
+
+    <th:block th:fragment="content">
+
+        <form action="#" th:action="@{ /product/add }" method="post" th:object="${ product }">
+            <div class="mb-3">
+                <label for="input-brand" class="form-label">Brand: </label>
+                <input type="text" id="input-brand" class="form-control" th:field="*{ brand }">
+            </div>
+            <div class="mb-3">
+                <label for="input-model" class="form-label">Model: </label>
+                <input type="text" id="input-model" class="form-control" th:field="*{ model }">
+            </div>
+            <div class="mb-3">
+                <label for="input-price" class="form-label">Price: </label>
+                <input type="number" id="input-price" class="form-control" th:field="*{ price }">
+            </div>
+            <button type="submit" class="btn btn-info">Submit</button>
+        </form>
+
+    </th:block>
+
+</html>

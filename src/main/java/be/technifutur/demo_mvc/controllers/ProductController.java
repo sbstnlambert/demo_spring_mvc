@@ -1,6 +1,7 @@
 package be.technifutur.demo_mvc.controllers;
 
 import be.technifutur.demo_mvc.models.Product;
+import be.technifutur.demo_mvc.models.ProductForm;
 import be.technifutur.demo_mvc.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -57,6 +58,17 @@ public class ProductController {
         model.addAttribute("brand_list", service.getAllByBrand(brand));
 //        model.addAttribute("brand", brand);
         return "pages/displayByBrand";
+    }
+
+    @GetMapping("/add")
+    public String displayInsertForm(@ModelAttribute("product") ProductForm form) {
+        return "forms/productForm";
+    }
+
+    @PostMapping("/add")
+    public String processInsert(@ModelAttribute("product") ProductForm form) {
+        Product result = service.insert(form);
+        return "redirect:/product/" + result.getId();
     }
 
     @ExceptionHandler(NoSuchElementException.class)
