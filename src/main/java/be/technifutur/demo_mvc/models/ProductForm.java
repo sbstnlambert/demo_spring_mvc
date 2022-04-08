@@ -1,6 +1,7 @@
 package be.technifutur.demo_mvc.models;
 
 import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Data
+@Validated
 public class ProductForm {
 
     // Utilisation des @NotBlank, @Size et @Min après avoir ajouté la spring validation dans les dépendances
@@ -23,6 +25,6 @@ public class ProductForm {
     private String model;
     @NotNull(message = "STOP! Price is null.")
     @Min(0)
-    private double price;
+    private Double price;
 
 }

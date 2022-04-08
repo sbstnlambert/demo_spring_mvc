@@ -45,6 +45,7 @@ public class ProductController {
     }
 
     @GetMapping
+//    @PreAuthorize("permitAll()")
     // Commente car ce code est remplacé par l'implémentation de la méthode getAll()
 //    public String displayAll(Model model) {
 //        List<Product> list = service.getAll();
@@ -54,6 +55,7 @@ public class ProductController {
     }
 
     @GetMapping("/by_brand")
+//    @PreAuthorize("permitAll()")
     // Je passe "brand" à @ModelAttribute, mais c'est facultatif
     // car ma variable se nomme déjà brand
     public String displayBrand(@RequestParam @ModelAttribute("brand") String brand, Model model) {
@@ -63,11 +65,13 @@ public class ProductController {
     }
 
     @GetMapping("/add")
+//    @PreAuthorize("isAuthenticated()")
     public String displayInsertForm(@ModelAttribute("product") ProductForm form) {
         return "forms/productForm";
     }
 
     @PostMapping("/add")
+//    @PreAuthorize("isAuthenticated()")
     public String processInsert(@Valid @ModelAttribute("product") ProductForm form, BindingResult binding) {
         if (binding.hasErrors())
             return "forms/productForm";
