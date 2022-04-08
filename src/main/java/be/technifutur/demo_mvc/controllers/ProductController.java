@@ -22,6 +22,13 @@ public class ProductController {
         this.service = service;
     }
 
+    // ModelAttribute est à utiliser avec parcimonie
+    // Surtout s'il concerne une requête très sollicitée
+    @ModelAttribute("get_all")
+    public List<Product> getAll() {
+        return service.getAll();
+    }
+
     @GetMapping("/{id}")
     // Je renvoie le nom du fichier qui se trouve dans mon dossier templates (package resources.templates)
     // Très souvent, renvoie un String
@@ -35,16 +42,20 @@ public class ProductController {
     }
 
     @GetMapping
-    public String displayAll(Model model) {
-        List<Product> list = service.getAll();
-        model.addAttribute("product_list", list);
+    // Commente car ce code est remplacé par l'implémentation de la méthode getAll()
+//    public String displayAll(Model model) {
+//        List<Product> list = service.getAll();
+//        model.addAttribute("product_list", list);
+    public String displayAll() {
         return "displayAll";
     }
 
     @GetMapping("/by_brand")
-    public String displayBrand(@RequestParam String brand, Model model) {
+    // Je passe "brand" à @ModelAttribute, mais c'est facultatif
+    // car ma variable se nomme déjà brand
+    public String displayBrand(@RequestParam @ModelAttribute("brand") String brand, Model model) {
         model.addAttribute("brand_list", service.getAllByBrand(brand));
-        model.addAttribute("brand", brand);
+//        model.addAttribute("brand", brand);
         return "displayByBrand";
     }
 
