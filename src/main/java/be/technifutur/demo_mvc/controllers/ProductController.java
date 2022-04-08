@@ -38,7 +38,7 @@ public class ProductController {
         model.addAttribute("product", p);
 
         // Renvoie le fichier displayOne.html dans resources.templates
-        return "displayOne";
+        return "pages/displayOne";
     }
 
     @GetMapping
@@ -47,7 +47,7 @@ public class ProductController {
 //        List<Product> list = service.getAll();
 //        model.addAttribute("product_list", list);
     public String displayAll() {
-        return "displayAll";
+        return "pages/displayAll";
     }
 
     @GetMapping("/by_brand")
@@ -56,12 +56,12 @@ public class ProductController {
     public String displayBrand(@RequestParam @ModelAttribute("brand") String brand, Model model) {
         model.addAttribute("brand_list", service.getAllByBrand(brand));
 //        model.addAttribute("brand", brand);
-        return "displayByBrand";
+        return "pages/displayByBrand";
     }
 
     @ExceptionHandler(NoSuchElementException.class)
     public String handle(NoSuchElementException e) {
-        return "404";
+        return "pages/404";
     }
 
 }
