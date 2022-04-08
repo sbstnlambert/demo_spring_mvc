@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Product List</title>
 </head>
-<body>
+<!-- Grâce à l'implémentation de la méthode getAll()
+        on peut créer une variable locale list -->
+<body th:with="list=${ get_all }">
 
     <!-- Utiliser th:replace pour remplacer la div par le fragment (ici le h1) -->
     <!-- Utiliser th:insert pour remplacer la div par le fragment (ici le h1) -->
@@ -12,12 +14,13 @@
     </div>
 
     <div th:replace="~{ fragments :: #shopping_card }"></div>
-    <h2 th:text="| Product List (${ product_list.size }) |"></h2>
+    <h2 th:text="| Product List (${ list.size }) |"></h2>
 
     <!-- th:each boucle sur les éléments d'une liste -->
     <!-- FOCUS = th:object => Utiliser ceci et l'astérisque *{...} pour ne plus avoir à faire product.brand, product.model, etc. -->
     <ul>
-        <li th:each="product : ${ product_list }" th:object="${ product }">
+<!--        Récupère les données depuis ma méthode getAll() du Controller -->
+        <li th:each="product : ${ get_all }" th:object="${ product }">
             <p th:text="| Brand: *{ brand } |"></p>
             <p th:text="| Model: *{ model } |"></p>
             <p th:text="| Price: *{ price } |"></p>
